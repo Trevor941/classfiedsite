@@ -18,9 +18,13 @@ Contact Us
         <div class="row">
             <div class="col-lg-8 col-md-8 col-xs-12">
 
-                <form id="contactForm" class="contact-form" data-toggle="validator">
+                <form method="POST" action="{{route('contact.store')}}">
+                    @csrf
                     <h2 class="contact-title">
                         Send Message Us
+                        @if (Session('success'))
+                            <p>{{session('success')}}</p>
+                        @endif
                     </h2>
                     <div class="row">
                         <div class="col-md-12">
@@ -28,20 +32,20 @@ Contact Us
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Name" required data-error="Please enter your name">
+                                            placeholder="Name" value="{{old('name')}}" required data-error="Please enter your name">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Email"
+                                        <input type="email" class="form-control" id="email" value="{{old('email')}}" name="email" placeholder="Email"
                                             required data-error="Please enter your email">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="msg_subject" name="subject"
+                                        <input type="text" class="form-control" id="msg_subject" value="{{old('subject')}}" name="subject"
                                             placeholder="Subject" required data-error="Please enter your subject">
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -52,7 +56,7 @@ Contact Us
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" placeholder="Massage" rows="7" data-error="Write your message" required></textarea>
+                                        <textarea class="form-control" placeholder="Message" rows="7" data-error="Write your message" name="message" required>{{old('subject') }}</textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
