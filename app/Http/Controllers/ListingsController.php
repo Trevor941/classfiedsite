@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ListingsController extends Controller
@@ -23,7 +24,9 @@ class ListingsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get()->toTree();
+        return view('front.listings.create', compact('categories'));
+        //dd($categories);
     }
 
     /**

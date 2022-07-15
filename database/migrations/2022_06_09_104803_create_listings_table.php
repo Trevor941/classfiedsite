@@ -17,6 +17,7 @@ class CreateListingsTable extends Migration
             $table->increments('id');
             $table->string('title');
             //$table->integer('category_id')->unsigned();
+            $table->string('slug')->unique();
             $table->decimal('price', 18, 2);
             $table->text('description');
             $table->string('firstname');
